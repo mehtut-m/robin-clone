@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import imagesLoaded from 'imagesloaded';
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 import fragment from './shader/fragment.glsl';
@@ -10,7 +11,6 @@ import gsap from 'gsap';
 export default class Sketch {
   constructor(options) {
     this.scene = new THREE.Scene();
-
     this.container = options.dom;
     this.width = this.container.offsetWidth;
     this.height = this.container.offsetHeight;
@@ -32,41 +32,21 @@ export default class Sketch {
     // var aspect = window.innerWidth / window.innerHeight;
     // this.camera = new THREE.OrthographicCamera( frustumSize * aspect / - 2, frustumSize * aspect / 2, frustumSize / 2, frustumSize / - 2, -1000, 1000 );
     this.camera.position.set(0, 0, 2);
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    // this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.time = 0;
 
     this.isPlaying = true;
 
     this.materials = [];
     this.meshes = [];
+    this.groups = [];
 
     this.addObjects();
+
     this.resize();
     this.render();
     this.setupResize();
-
-    this.handleImages();
     // this.settings();
-  }
-  handleImages() {
-    let images = [...document.querySelectorAll('img')];
-
-    images.forEach((img, index) => {
-      let material = this.material.clone();
-      this.materials.push(material);
-      material.uniforms.texture1.value = new THREE.TextureLoader().load(
-        img.src
-      );
-      material.uniforms.texture1.value.needsUpdate = true;
-
-      let geometry = new THREE.PlaneBufferGeometry(1.5, 1, 20, 20);
-      let mesh = new THREE.Mesh(geometry, material);
-
-      this.scene.add(mesh);
-      this.meshes.push(mesh);
-      mesh.position.y = index * 1.2;
-      //   mesh.rotation.y = -0.5;
-    });
   }
 
   settings() {
@@ -92,20 +72,48 @@ export default class Sketch {
 
   addObjects() {
     let that = this;
+
     this.material = new THREE.ShaderMaterial({
       extensions: {
         derivatives: '#extension GL_OES_standard_derivatives : enable',
       },
-      side: THREE.DoubleSide,
+      //   side: THREE.DoubleSide,
       uniforms: {
         time: { type: 'f', value: 0 },
+        distanceFromCenter: { type: 'float', value: 0 },
         texture1: { type: 't', value: null },
         resolution: { value: new THREE.Vector4() },
       },
       // wireframe: true,
-      // transparent: true,
+      transparent: true,
       vertexShader: vertex,
       fragmentShader: fragment,
+    });
+
+    let images = [...document.querySelectorAll('img')];
+
+    images.forEach((img, index) => {
+      let material = this.material.clone();
+      material.uniforms.texture1.value = new THREE.TextureLoader().load(
+        img.src
+      );
+      this.materials.push(material);
+
+      let group = new THREE.Group();
+
+      let geometry = new THREE.PlaneBufferGeometry(1.5, 1, 20, 20);
+      let mesh = new THREE.Mesh(geometry, material);
+
+      group.add(mesh);
+      this.groups.push(group);
+      this.scene.add(group);
+      this.meshes.push(mesh);
+
+      mesh.position.y = index * 1.2;
+
+      group.rotation.x = -0.25;
+      group.rotation.y = -0.3;
+      group.rotation.z = -0.1;
     });
   }
 
@@ -123,15 +131,14 @@ export default class Sketch {
   render() {
     if (!this.isPlaying) return;
     this.time += 0.05;
-    this.materials.forEach((mat) => {
-      mat.uniforms.time.value = this.time;
-    });
+    if (this.materials) {
+      this.materials.forEach((mat) => {
+        mat.uniforms.time.value = this.time;
+      });
+    }
     this.material.uniforms.time.value = this.time;
+
     requestAnimationFrame(this.render.bind(this));
     this.renderer.render(this.scene, this.camera);
   }
 }
-
-new Sketch({
-  dom: document.getElementById('container'),
-});

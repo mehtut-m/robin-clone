@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx parcel index.html"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,7 @@
   "dependencies": {
     "dat.gui": "^0.7.9",
     "gsap": "^3.10.2",
+    "imagesloaded": "^5.0.0",
     "three": "^0.139.2"
   },
   "devDependencies": {
