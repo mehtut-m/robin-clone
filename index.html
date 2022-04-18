@@ -8,32 +8,60 @@
     <title>Document</title>
   </head>
   <body>
-    <ul class="nav">
-      <li data-nav="0">111</li>
-      <li data-nav="1">22</li>
-      <li data-nav="2">33</li>
-      <li data-nav="3">44</li>
-      <li data-nav="4">55</li>
-    </ul>
-    <div id="wrap">
-      <div class="n">
-        <img src="https://picsum.photos/id/15/800/500" width="60" />
+    <nav class="container">
+      <a href="/">Robin Clone</a>
+      <a href="/">About</a>
+    </nav>
+    <main>
+      <ul class="nav">
+        <div class="nav-item-ctn">
+          <h1 class="project-name-tag">Esperanto</h1>
+          <li data-nav="0" class="nav-item"></li>
+        </div>
+        <div class="nav-item-ctn">
+          <h1 class="project-name-tag">Ueno</h1>
+          <li data-nav="1" class="nav-item"></li>
+        </div>
+        <div class="nav-item-ctn">
+          <h1 class="project-name-tag">Iv-Skaya</h1>
+          <li data-nav="2" class="nav-item"></li>
+        </div>
+        <div class="nav-item-ctn">
+          <h1 class="project-name-tag">SnickSnack</h1>
+          <li data-nav="3" class="nav-item"></li>
+        </div>
+        <div class="nav-item-ctn">
+          <h1 class="project-name-tag">Google</h1>
+          <li data-nav="4" class="nav-item"></li>
+        </div>
+        <div class="nav-item-ctn">
+          <h1 class="project-name-tag">Eagle Films</h1>
+          <li data-nav="5" class="nav-item"></li>
+        </div>
+      </ul>
+
+      <div id="wrap" style="display: none">
+        <div class="n">
+          <img src="https://picsum.photos/id/15/800/500" width="60" />
+        </div>
+        <div class="n n1">
+          <img src="https://picsum.photos/id/10/800/500" width="60" />
+        </div>
+        <div class="n n2">
+          <img src="https://picsum.photos/id/20/800/500" width="60" />
+        </div>
+        <div class="n n3">
+          <img src="https://picsum.photos/id/30/800/500" width="60" />
+        </div>
+        <div class="n n4">
+          <img src="https://picsum.photos/id/23/800/500" width="60" />
+        </div>
+        <div class="n n5">
+          <img src="https://picsum.photos/id/25/800/500" width="60" />
+        </div>
       </div>
-      <div class="n n1">
-        <img src="https://picsum.photos/id/10/800/500" width="60" />
-      </div>
-      <div class="n n2">
-        <img src="https://picsum.photos/id/20/800/500" width="60" />
-      </div>
-      <div class="n n3">
-        <img src="https://picsum.photos/id/30/800/500" width="60" />
-      </div>
-      <div class="n n4">
-        <img src="https://picsum.photos/id/23/800/500" width="60" />
-      </div>
-    </div>
+    </main>
     <div id="container"></div>
-    <div id="block"></div>
 
     <script src="./app.js" type="module"></script>
   </body>

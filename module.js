@@ -14,10 +14,10 @@ export default class Sketch {
     this.container = options.dom;
     this.width = this.container.offsetWidth;
     this.height = this.container.offsetHeight;
-    this.renderer = new THREE.WebGLRenderer();
+    this.renderer = new THREE.WebGLRenderer({ alpha: true });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.setSize(this.width, this.height);
-    this.renderer.setClearColor(0xeeeeee, 1);
+    // this.renderer.setClearColor(0xeeeeee, 1);
 
     this.container.appendChild(this.renderer.domElement);
 
@@ -69,6 +69,9 @@ export default class Sketch {
     this.camera.aspect = this.width / this.height;
     this.camera.updateProjectionMatrix();
   }
+  setSceneBackground(hex) {
+    this.scene.background = new THREE.Color(hex);
+  }
 
   addObjects() {
     let that = this;
@@ -107,9 +110,13 @@ export default class Sketch {
       group.add(mesh);
       this.groups.push(group);
       this.scene.add(group);
+
+      // this.setSceneBackground(0xeeeeee);
+
       this.meshes.push(mesh);
 
-      mesh.position.y = index * 1.2;
+      mesh.position.y = index * -1.2;
+      mesh.position.x = 0.6;
 
       group.rotation.x = -0.25;
       group.rotation.y = -0.3;
@@ -139,6 +146,7 @@ export default class Sketch {
     this.material.uniforms.time.value = this.time;
 
     requestAnimationFrame(this.render.bind(this));
+
     this.renderer.render(this.scene, this.camera);
   }
 }
