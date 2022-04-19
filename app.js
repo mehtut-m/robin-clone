@@ -1,5 +1,6 @@
 import Sketch from './module.js';
 import gsap from 'gsap';
+import { data } from './data.json';
 
 let sketch = new Sketch({
   dom: document.getElementById('container'),
@@ -21,8 +22,24 @@ window.addEventListener('wheel', (e) => {
 let objs = Array(6).fill({ dist: 0 });
 let navs = [...document.querySelectorAll('li')];
 
+function updateContent(rounded) {
+  const title = document.querySelector('.project-title');
+  const desc = document.querySelector('.project-desc');
+
+  const body = document.querySelector('body');
+  body.style.backgroundColor = data[rounded].bgColor;
+
+  title.textContent = data[rounded].title;
+  title.style.color = data[rounded].mainTypo;
+
+  desc.textContent = data[rounded].description;
+  desc.style.color = data[rounded].secTypo;
+}
+
 function raf() {
   rounded = gsap.utils.clamp(0, objs.length - 1, Math.round(position));
+  //
+  updateContent(rounded);
 
   position += speed;
   // Added Inertia
@@ -44,10 +61,11 @@ function raf() {
   });
 
   navs.forEach((el, index) => {
-    el.style.backgroundColor = 'rgb(13,13,13)';
+    // el.style.backgroundColor = 'rgb(13,13,13)';
+    el.style.backgroundColor = 'teal';
     el.style.opacity = '0.4';
     if (Math.abs(rounded) === index) {
-      el.style.backgroundColor = 'red';
+      el.style.backgroundColor = '#ff9900';
       el.style.opacity = '1';
     }
   });
@@ -73,6 +91,7 @@ let nav = document.querySelector('.nav');
 let rots = sketch.groups.map((e) => e.rotation);
 let mesh = sketch.meshes.map((e) => e.position);
 
+// Navigation Bar
 nav.addEventListener('mouseenter', () => {
   attractMode = true;
   document
@@ -80,6 +99,15 @@ nav.addEventListener('mouseenter', () => {
     .forEach((item) => (item.style.visibility = 'visible'));
 
   document.querySelector('body').style.backgroundColor = '#000';
+
+  let tl = gsap.timeline({ defaults: { ease: 'SlowMo.easeOut' } });
+  tl.to('.nav-item', {
+    width: '100%',
+    duration: 0.35,
+    stagger: 0.01,
+    opacity: 1,
+    ease: 'Power2.easeOut',
+  }).to('.nav-item', { width: '8px', stagger: 0.1 });
   gsap.to(rots, { x: -0.5, y: 0, z: 0, duration: 0.3 });
   gsap.to(mesh, { x: 0, duration: 0.3 });
 });

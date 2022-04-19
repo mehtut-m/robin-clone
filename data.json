@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "title": "Esperanto",
+      "description": "My year long journey around the world to shine a light on creatives from 16 different countries.",
+      "bgColor": "rgb(255,255,255)",
+      "mainTypo": "rgb(254,52,74)",
+      "secTypo": "#111",
+      "image": "https://picsum.photos/id/15/800/500"
+    },
+    {
+      "title": "Ueno",
+      "description": "Designing a new way to talk with close friends through audio and video aiming to build better friendships.",
+      "mainTypo": "rgb(255,247,148)",
+      "bgColor": "rgb(122, 185, 224)",
+      "secTypo": "rgb(255,255,255)",
+      "image": "https://picsum.photos/id/15/800/500"
+    },
+    {
+      "title": "Iv-Skaya",
+      "description": "With Russian photographer Elena Iv-Skaya, I created a portfolio that matches her rich and colorful style.",
+      "bgColor": "rgb(251, 21, 21)",
+      "mainTypo": "rgb(255,255,255)",
+      "secTypo": "rgb(255,255,255)",
+      "image": "https://picsum.photos/id/15/800/500"
+    },
+    {
+      "title": "SnickSnack",
+      "description": "Designing a new way to talk with close friends through audio and video aiming to build better friendships.",
+      "bgColor": "rgb(242, 125, 181)",
+      "mainTypo": "rgb(102, 255, 222)",
+      "secTypo": "rgb(255,255,255)",
+      "image": "https://picsum.photos/id/15/800/500"
+    },
+    {
+      "title": "Google",
+      "description": "With Factor SF I created a marketing site introducing Google Express’s voice activated shopping.",
+      "bgColor": "rgb(255,255,255)",
+      "mainTypo": "rgb(255, 111, 100)",
+      "secTypo": "rgb(0,0,0)",
+      "image": "https://picsum.photos/id/15/800/500"
+    },
+    {
+      "title": "Eagle Films",
+      "description": "An online presence for Eagle Films, introducing the company, the movies, the team and their values to the world..",
+      "bgColor": "rgb(21, 49, 54)",
+      "mainTypo": "rgb(185, 150, 110)",
+      "secTypo": "rgb(255,255,255)",
+      "image": "https://picsum.photos/id/15/800/500"
+    }
+  ]
+}
