@@ -111,8 +111,6 @@ export default class Sketch {
       this.groups.push(group);
       this.scene.add(group);
 
-      // this.setSceneBackground(0xeeeeee);
-
       this.meshes.push(mesh);
 
       mesh.position.y = index * -1.2;

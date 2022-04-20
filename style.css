@@ -3,15 +3,23 @@
   margin: 0;
   padding: 0;
 }
+
+@font-face {
+  font-family: 'silka';
+  font-weight: normal;
+  font-style: normal;
+  src: url('./assets/fonts/silka-regular-webfont.ttf');
+}
+
 body {
-  background-color: aquamarine;
+  background-color: black;
   overflow: hidden;
-  font-family: sans-serif;
+  font-family: silka, sans-serif;
 }
 
 a {
   text-decoration: none;
-  color: unset;
+  color: inherit;
 }
 
 #container {
@@ -20,7 +28,7 @@ a {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1;
+  z-index: 1;
   pointer-events: none;
 }
 
@@ -53,6 +61,8 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 6.25%;
+  font-size: 14px;
+  font-weight: 700;
   height: 90px;
 }
 
@@ -61,6 +71,10 @@ nav a {
   text-transform: uppercase;
   font-weight: 700;
 }
+.r {
+  display: inline-block;
+}
+
 .nav {
   position: fixed;
   top: 50%;
@@ -72,7 +86,6 @@ nav a {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
 }
 
 .nav-item-ctn {
@@ -100,17 +113,24 @@ nav a {
   z-index: 2;
   transition: background-color 0.3s ease;
 }
+.wrapper > * {
+  opacity: 0;
+}
 
 .wrapper {
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  overflow: hidden;
+  width: 10px;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  transition: background-color 0.4s ease-in-out;
+  /* width: 100vw;
+  height: 100vh; */
 }
 
 .hero-section {
   height: calc(100%);
-
-  /* height: calc(100% - 90px); */
   padding: 0 6.25%;
   display: flex;
   align-items: center;
@@ -127,4 +147,17 @@ nav a {
 
 .project-title {
   font-size: 9vw;
+}
+.project-desc {
+  font-size: 1.25rem;
+  line-height: 2rem;
+  max-width: 580px;
+}
+.loader {
+  position: fixed;
+  background: red;
+  width: 10px;
+  height: 100vh;
+  left: -100%;
+  transition: background-color 1s ease-in-out;
 }
